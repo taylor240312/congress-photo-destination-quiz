@@ -38,9 +38,9 @@ export const questions: QuizQuestion[] = [
     theme: "Impostos e custo de vida",
     title: "Para aliviar o custo de vida, o que deve vir primeiro?",
     image: q1,
-    imageAlt: "Família a fazer compras numa feira de rua",
+    imageAlt: "Família fazendo compras em uma feira de rua",
     options: [
-      { id: "a", label: "Isentar de imposto quem ganha menos e taxar mais os altos rendimentos", lean: "lula" },
+      { id: "a", label: "Isentar de imposto quem ganha menos e taxar mais os altas rendas", lean: "lula" },
       { id: "b", label: "Cortar impostos para todos e reduzir o tamanho do Estado", lean: "flavio" },
       { id: "c", label: "Simplificar o sistema sem mudar muito a carga total", lean: "neutral" },
     ],
@@ -50,9 +50,9 @@ export const questions: QuizQuestion[] = [
     theme: "Economia e emprego",
     title: "Qual o melhor motor para gerar empregos?",
     image: q2,
-    imageAlt: "Trabalhadores numa fábrica brasileira",
+    imageAlt: "Trabalhadores em uma fábrica brasileira",
     options: [
-      { id: "a", label: "Investimento público e bancos estatais a impulsionar a indústria", lean: "lula" },
+      { id: "a", label: "Investimento público e bancos estatais para impulsionar a indústria", lean: "lula" },
       { id: "b", label: "Menos regras e mais liberdade para as empresas privadas", lean: "flavio" },
       { id: "c", label: "Um equilíbrio entre os dois", lean: "neutral" },
     ],
@@ -62,9 +62,9 @@ export const questions: QuizQuestion[] = [
     theme: "Segurança pública",
     title: "Como enfrentar a violência nas cidades?",
     image: q3,
-    imageAlt: "Viatura policial numa rua urbana ao entardecer",
+    imageAlt: "Viatura policial em uma rua urbana ao entardecer",
     options: [
-      { id: "a", label: "Penas mais duras e mais poder para as polícias", lean: "flavio" },
+      { id: "a", label: "Penas mais duras e mais poder para as forças policiais", lean: "flavio" },
       { id: "b", label: "Inteligência, prevenção social e coordenação nacional", lean: "lula" },
       { id: "c", label: "Facilitar a posse de armas para defesa pessoal", lean: "flavio" },
       { id: "d", label: "Controlar mais rigorosamente o acesso a armas", lean: "lula" },
@@ -75,7 +75,7 @@ export const questions: QuizQuestion[] = [
     theme: "Saúde",
     title: "Qual deve ser o papel do SUS?",
     image: q4,
-    imageAlt: "Profissionais de saúde num corredor hospitalar",
+    imageAlt: "Profissionais de saúde em um corredor hospitalar",
     options: [
       { id: "a", label: "Reforçar o SUS com mais verba pública", lean: "lula" },
       { id: "b", label: "Ampliar parcerias com o setor privado para ganhar eficiência", lean: "flavio" },
@@ -87,7 +87,7 @@ export const questions: QuizQuestion[] = [
     theme: "Programas sociais",
     title: "Programas de transferência de renda devem…",
     image: q5,
-    imageAlt: "Família brasileira a partilhar uma refeição em casa",
+    imageAlt: "Família brasileira compartilhando uma refeição em casa",
     options: [
       { id: "a", label: "Ser ampliados e ter valores maiores", lean: "lula" },
       { id: "b", label: "Ter regras mais rígidas e portas de saída para o emprego", lean: "flavio" },
@@ -99,7 +99,7 @@ export const questions: QuizQuestion[] = [
     theme: "Educação",
     title: "Qual a prioridade na educação?",
     image: q6,
-    imageAlt: "Estudantes numa sala de aula de escola pública",
+    imageAlt: "Estudantes em uma sala de aula de escola pública",
     options: [
       { id: "a", label: "Mais universidades e institutos federais públicos", lean: "lula" },
       { id: "b", label: "Escolas cívico-militares e mais disciplina", lean: "flavio" },
@@ -108,10 +108,10 @@ export const questions: QuizQuestion[] = [
   },
   {
     id: "infra",
-    theme: "Infraestruturas",
+    theme: "Infraestrutura",
     title: "Quem deve liderar as grandes obras?",
     image: q7,
-    imageAlt: "Vista aérea de obras numa autoestrada",
+    imageAlt: "Vista aérea de obras em uma rodovia",
     options: [
       { id: "a", label: "O Estado, com um grande programa de investimento público", lean: "lula" },
       { id: "b", label: "A iniciativa privada, por concessões e privatizações", lean: "flavio" },
@@ -122,7 +122,7 @@ export const questions: QuizQuestion[] = [
     theme: "Gastos públicos",
     title: "Sobre as contas públicas, o que é mais importante?",
     image: q8,
-    imageAlt: "Congresso Nacional em Brasília num dia nublado",
+    imageAlt: "Congresso Nacional em Brasília em um dia nublado",
     options: [
       { id: "a", label: "Cortar despesas, mesmo que isso reduza serviços", lean: "flavio" },
       { id: "b", label: "Gastar para estimular a economia e proteger os mais pobres", lean: "lula" },
@@ -137,8 +137,8 @@ export const questions: QuizQuestion[] = [
     imageAlt: "Brasília ao amanhecer",
     options: [
       { id: "a", label: "Redução das desigualdades e inclusão social", lean: "lula" },
-      { id: "b", label: "Liberdade económica, família e valores tradicionais", lean: "flavio" },
-      { id: "c", label: "Crescimento sustentável e proteção do ambiente", lean: "lula" },
+      { id: "b", label: "Liberdade econômica, família e valores tradicionais", lean: "flavio" },
+      { id: "c", label: "Crescimento sustentável e proteção do meio ambiente", lean: "lula" },
       { id: "d", label: "Ordem, segurança e combate à corrupção", lean: "flavio" },
     ],
   },
@@ -148,7 +148,7 @@ export const questions: QuizQuestion[] = [
 export const tiebreakerQuestion: QuizQuestion = {
   id: "desempate",
   theme: "Última escolha",
-  title: "Se tivesses de escolher um só foco para o próximo governo?",
+  title: "Se você tivesse que escolher um único foco para o próximo governo, qual seria?",
   image: q9,
   imageAlt: "Brasília ao amanhecer",
   options: [
