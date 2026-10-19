@@ -49,7 +49,15 @@ export function Quiz() {
       if (inFlight.current) return;
       inFlight.current = true;
       setPhase("analyzing");
-      const picked = f.map((q) => ({ q, o: q.options.find((o) => o.id === finalAnswers[q.id])! }));
+      const picked = f.flatMap((q) => {
+        const o = q.options.find((option) => option.id === finalAnswers[q.id]);
+        return o ? [{ q, o }] : [];
+      });
+      if (picked.length !== f.length || picked.length === 0) {
+        inFlight.current = false;
+        setPhase("error");
+        return;
+      }
       try {
         const res = await analyze({
           data: {
@@ -67,7 +75,7 @@ export function Quiz() {
           setPhase("quiz");
           return;
         }
-        finish(picked[picked.length - 1].o.lean === "flavio" ? "flavio" : "lula");
+        finish(picked.at(-1)?.o.lean === "flavio" ? "flavio" : "lula");
       } catch (e) {
         console.error(e);
         setPhase("error");
@@ -79,7 +87,7 @@ export function Quiz() {
   );
 
   const choose = (optionId: string) => {
-    if (leaving) return;
+    if (leaving || !current) return;
     const prev = answers[current.id];
     let next = { ...answers, [current.id]: optionId };
     // Alterar uma resposta invalida as respostas posteriores
@@ -182,6 +190,8 @@ export function Quiz() {
       </main>
     );
   }
+
+  if (!current) return null;
 
   const progress = ((index + (leaving ? 1 : 0)) / flow.length) * 100;
   const selected = answers[current.id];
