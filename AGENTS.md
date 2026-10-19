@@ -10,4 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Quiz content (questions, images, option leans) lives in src/data/questions.ts and ebook URLs in src/config/destinations.ts; UI never hardcodes them — so content can change without touching components.
+- Uploaded ebook PDFs use Lovable Assets JSON pointers in destination configuration; allow their same-origin asset paths so previews and published sites open the same documents.
 - AI analysis runs only in a server function (src/lib/analyze.functions.ts) with a validated enum output; ties fall back to the majority rule in src/lib/scoring.ts — keeps keys off the client and decisions auditable.

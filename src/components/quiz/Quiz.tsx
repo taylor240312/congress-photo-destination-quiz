@@ -49,7 +49,15 @@ export function Quiz() {
       if (inFlight.current) return;
       inFlight.current = true;
       setPhase("analyzing");
-      const picked = f.map((q) => ({ q, o: q.options.find((o) => o.id === finalAnswers[q.id])! }));
+      const picked = f.flatMap((q) => {
+        const o = q.options.find((option) => option.id === finalAnswers[q.id]);
+        return o ? [{ q, o }] : [];
+      });
+      if (picked.length !== f.length || picked.length === 0) {
+        inFlight.current = false;
+        setPhase("error");
+        return;
+      }
       try {
         const res = await analyze({
           data: {
@@ -67,7 +75,7 @@ export function Quiz() {
           setPhase("quiz");
           return;
         }
-        finish(picked[picked.length - 1].o.lean === "flavio" ? "flavio" : "lula");
+        finish(picked.at(-1)?.o.lean === "flavio" ? "flavio" : "lula");
       } catch (e) {
         console.error(e);
         setPhase("error");
@@ -79,7 +87,7 @@ export function Quiz() {
   );
 
   const choose = (optionId: string) => {
-    if (leaving) return;
+    if (leaving || !current) return;
     const prev = answers[current.id];
     let next = { ...answers, [current.id]: optionId };
     // Alterar uma resposta invalida as respostas posteriores
@@ -119,10 +127,10 @@ export function Quiz() {
             Especial editorial · Brasil
           </span>
           <h1 className="animate-fade-up font-display text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-7xl">
-            Que Brasil queres para amanhã?
+            Que Brasil você quer para amanhã?
           </h1>
           <p className="animate-fade-up mt-5 max-w-xl text-lg text-primary-foreground/85">
-            Explora prioridades e propostas para impostos, segurança, saúde, educação e muito mais. Responde com
+            Explore prioridades e propostas para impostos, segurança, saúde, educação e muito mais. Responda com
             sinceridade — não há respostas certas.
           </p>
           <div className="animate-fade-up mt-8 flex flex-wrap items-center gap-5">
@@ -154,7 +162,7 @@ export function Quiz() {
         <div className="w-full max-w-md text-center animate-fade-up">
           {phase === "analyzing" && (
             <>
-              <h2 className="font-display text-3xl font-extrabold">A analisar as tuas respostas…</h2>
+              <h2 className="font-display text-3xl font-extrabold">Analisando suas respostas…</h2>
               <div className="mt-8 h-2 w-full overflow-hidden rounded-full bg-primary-foreground/15">
                 <div className="h-full w-2/5 rounded-full bg-accent animate-indeterminate" />
               </div>
@@ -163,7 +171,7 @@ export function Quiz() {
           {phase === "error" && (
             <>
               <h2 className="font-display text-3xl font-extrabold">Não foi possível concluir a análise</h2>
-              <p className="mt-3 text-primary-foreground/75">Verifica a ligação e tenta de novo.</p>
+              <p className="mt-3 text-primary-foreground/75">Verifique sua conexão e tente novamente.</p>
               <button
                 onClick={() => runAnalysis(answers, flow)}
                 className="mt-8 rounded-full bg-accent px-7 py-3 font-semibold text-accent-foreground"
@@ -174,7 +182,7 @@ export function Quiz() {
           )}
           {phase === "unavailable" && (
             <>
-              <h2 className="font-display text-3xl font-extrabold">Obrigado por participares</h2>
+              <h2 className="font-display text-3xl font-extrabold">Obrigado por participar</h2>
               <p className="mt-3 text-primary-foreground/75">O conteúdo de destino ainda não está disponível.</p>
             </>
           )}
@@ -182,6 +190,8 @@ export function Quiz() {
       </main>
     );
   }
+
+  if (!current) return null;
 
   const progress = ((index + (leaving ? 1 : 0)) / flow.length) * 100;
   const selected = answers[current.id];
