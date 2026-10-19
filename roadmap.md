@@ -1,0 +1,2 @@
+- [ ] Adaptar todos os textos para português do Brasil.
+- [ ] Conectar os PDFs enviados aos resultados correspondentes e verificar os destinos.
